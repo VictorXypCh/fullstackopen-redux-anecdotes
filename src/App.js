@@ -1,13 +1,20 @@
-import { useSelector, useDispatch } from "react-redux";
-import AnecdotesForm from "./components/AnecdoteForm";
-import AnecdotesList from "./components/AnecdoteList";
+import NewNote from "./components/NewNote";
+import Notes from "./components/Notes";
+import VisibilityFilter from "./components/VisibilityFilter";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { initializeNotes } from "./reducers/noteReducer";
 const App = () => {
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(initializeNotes());
+  }, [dispatch]);
   return (
     <div>
-      <h2>Anecdotes</h2>
-      <AnecdotesList />
-      <AnecdotesForm />
+      <NewNote />
+      <VisibilityFilter />
+      <Notes />
     </div>
   );
 };
